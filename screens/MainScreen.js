@@ -1,10 +1,12 @@
 import React from 'react';
 import { AsyncStorage, StyleSheet, Text, TextInput, View, Image, Button } from 'react-native';
 
+
 export default class MainScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+  
   constructor(props){
     super(props);
     this.state = {
@@ -14,6 +16,12 @@ export default class MainScreen extends React.Component {
       setTimer: '',
       setCount: '',
     };
+    if(this.state.startDay == ''){
+      this.setState({
+        startDay: new Date('2014-12-12')
+      })
+    }
+    console.log('date ', this.state.startDay);
     AsyncStorage.multiGet(['help', 'todayCount', 'mountCount', 'setTimer', 'setCount'], (err, stores) => {
       stores.map((result, i, store) => {
         let key = store[i][0];

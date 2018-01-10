@@ -8,8 +8,8 @@ import HelpScreen from './screens/HelpScreen';
 import MainScreen from './screens/MainScreen';
 
 const AppScreens = StackNavigator({
-  Help: { screen: HelpScreen },
   Main: { screen: MainScreen },
+  Help: { screen: HelpScreen },
 }, {
   headerMode: 'screen',
   transitionConfig: () => ({ screenInterpolator: () => null }),

@@ -3,6 +3,14 @@ import { AsyncStorage, StyleSheet, Text, View, Image, Button } from 'react-nativ
 import Swiper from 'react-native-swiper';
 import SvgUri from 'react-native-svg-uri';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {NavigationActions} from 'react-navigation';
+
+const resetHelp = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Main'})
+  ]
+});
 
 export default class HelpScreen extends React.Component {
   static navigationOptions = {
@@ -19,17 +27,20 @@ export default class HelpScreen extends React.Component {
         'help': result,
       });
       if(result == 'no'){
-        this.props.navigation.navigate('Main');
+        this.props.navigation.dispatch(resetHelp);
+        //this.props.navigation.navigate('Main');
       }
     });
   }
   disableHelp = () => {
     this.setState({'help': 'no'});
-    this.props.navigation.navigate('Main');
+    this.props.navigation.dispatch(resetHelp);
+    //this.props.navigation.navigate('Main');
   }
   componentDidMount = () => {
     if(this.state.help == 'no'){
-      this.props.navigation.navigate('Main');
+      this.props.navigation.dispatch(resetHelp);
+      //this.props.navigation.navigate('Main');
 
     }
   }
